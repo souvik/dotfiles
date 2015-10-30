@@ -127,6 +127,8 @@ set laststatus=2
 set hlsearch
 set hidden
 
+set backspace=indent,eol,start
+
 " Shortcut to rapidly toggle 'set list'
 nmap <leader>l :set list!<CR>
 
@@ -136,7 +138,7 @@ highlight SpecialKey guifg=#4a4a59
 
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
-let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#enabled=0
 let g:airline#extensions#tabline#left_sep=' '
 let g:airline#extensions#tabline#left_alt_sep='|'
 
