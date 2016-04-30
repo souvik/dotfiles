@@ -177,5 +177,10 @@ if has("autocmd")
 
   autocmd FileType python setlocal sw=4 sts=4 ts=4 expandtab
   autocmd FileType python setlocal autoindent
+
+  autocmd FileType scss setlocal sw=2 sts=2 ts=2 expandtab
+  autocmd FileType scss setlocal autoindent
+  autocmd FileType scss setlocal foldmethod=indent
+  autocmd FileType scss setlocal foldlevel=1
 endif
 
