@@ -84,8 +84,6 @@ Plugin 'vim-scripts/snipMate'
 " Match anything
 Plugin 'edsono/vim-matchit'
 
-" Manage file and buffers
-Plugin 'vim-scripts/LustyExplorer'
 Plugin 'wincent/command-t'
 Plugin 'mileszs/ack.vim'
 
@@ -168,6 +166,9 @@ if has("autocmd")
   autocmd FileType javascript setlocal autoindent
   autocmd FileType javascript call JavaScriptFold()
   autocmd FileType javascript setlocal foldlevel=1
+
+  autocmd FileType json setlocal sw=4 sts=4 ts=4 expandtab
+  autocmd FileType json setlocal autoindent
 
   autocmd FileType html setlocal sw=4 sts=4 ts=4 expandtab
   autocmd FileType html setlocal autoindent
