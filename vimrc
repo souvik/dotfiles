@@ -91,6 +91,9 @@ Plugin 'mileszs/ack.vim'
 Plugin 'Raimondi/delimitMate'
 
 Plugin 'kreeger/benlight'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'benmills/vimux'
+Plugin 'jgdavey/vim-turbux'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
