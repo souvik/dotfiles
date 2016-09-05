@@ -77,10 +77,6 @@ Plugin 'burnettk/vim-angular'
 " Find file faster
 Plugin 'vim-scripts/FuzzyFinder'
 
-" TextMate snippet feature
-" desert
-Plugin 'vim-scripts/snipMate'
-
 " Match anything
 Plugin 'edsono/vim-matchit'
 
@@ -94,6 +90,11 @@ Plugin 'kreeger/benlight'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'jgdavey/vim-turbux'
+
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
