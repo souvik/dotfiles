@@ -17,9 +17,6 @@ Plugin 'scrooloose/nerdtree'
 " Nerdcommenter plugin from github
 Plugin 'scrooloose/nerdcommenter'
 
-" NerdTreeTab plugin from github
-Plugin 'jistr/vim-nerdtree-tabs'
-
 " Ruby plugin from github
 Plugin 'vim-ruby/vim-ruby'
 
@@ -90,7 +87,7 @@ Plugin 'kreeger/benlight'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'jgdavey/vim-turbux'
-
+Plugin 'easymotion/vim-easymotion'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -101,6 +98,14 @@ Plugin 'leafgarland/typescript-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+no <down> <Nop>
+no <up> <Nop>
+no <left> <Nop>
+no <right> <Nop>
+ino <down> <Nop>
+ino <up> <Nop>
+ino <left> <Nop>
+ino <right> <Nop>
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -139,7 +144,7 @@ nmap <leader>l :set list!<CR>
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 let g:airline#extensions#tabline#enabled=0
 let g:airline#extensions#tabline#left_sep=' '
@@ -151,8 +156,9 @@ if has("autocmd")
   filetype on
   syntax enable
 
-  autocmd vimenter * if !argc() | NERDTree | endif
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
   au BufRead,BufNewFile *.feature set filetype=gherkin
   au! Syntax gherkin source ~/.vim/bundle/vim-cucumber/syntax/cucumber.vim
