@@ -7,9 +7,12 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " Let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'eparreno/vim-l9'
+Plugin 'L9'
+
+" Fugitive plugin from github
+Plugin 'tpope/vim-fugitive'
 
 " NERDTree plugin from github
 Plugin 'scrooloose/nerdtree'
@@ -41,9 +44,6 @@ Plugin 'godlygeek/tabular'
 " Vividchalk plugin from github
 Plugin 'tpope/vim-vividchalk'
 
-" Fugitive plugin from github
-Plugin 'tpope/vim-fugitive'
-
 " Python plugin from github
 Plugin 'python.vim'
 
@@ -74,9 +74,6 @@ Plugin 'burnettk/vim-angular'
 " Find file faster
 Plugin 'vim-scripts/FuzzyFinder'
 
-" Match anything
-Plugin 'edsono/vim-matchit'
-
 Plugin 'wincent/command-t'
 Plugin 'mileszs/ack.vim'
 
@@ -94,18 +91,15 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'leafgarland/typescript-vim'
 
+" Wisely add 'end' in ruby
+Plugin 'tpope/vim-endwise'
+" Lightweight support for Ruby's Bundler
+Plugin 'tpope/vim-bundler'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-no <down> <Nop>
-no <up> <Nop>
-no <left> <Nop>
-no <right> <Nop>
-ino <down> <Nop>
-ino <up> <Nop>
-ino <left> <Nop>
-ino <right> <Nop>
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -118,8 +112,19 @@ ino <right> <Nop>
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-" Set the color scheme used for syntax highlighting
 
+syntax on
+
+no <down> <Nop>
+no <up> <Nop>
+no <left> <Nop>
+no <right> <Nop>
+ino <down> <Nop>
+ino <up> <Nop>
+ino <left> <Nop>
+ino <right> <Nop>
+
+" Set the color scheme used for syntax highlighting
 set background=dark
 set t_Co=256
 colorscheme benlight
@@ -128,9 +133,11 @@ colorscheme benlight
 set number
 " Showing list characters all the time
 set list
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 set laststatus=2
+
 " Enable search highlighing
 set hlsearch
 set hidden
@@ -152,10 +159,6 @@ let g:airline#extensions#tabline#left_alt_sep='|'
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
-  " Enable filetype detection
-  filetype on
-  syntax enable
-
   autocmd StdinReadPre * let s:std_in=1
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
