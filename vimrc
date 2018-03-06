@@ -57,7 +57,8 @@ Plugin 'othree/html5.vim'
 Plugin 'kchmck/vim-coffee-script'
 
 " Modified statusline plugin from github
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Quickly search file
 Plugin 'kien/ctrlp.vim'
