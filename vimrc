@@ -198,7 +198,7 @@ if has("autocmd")
   autocmd FileType scss setlocal foldmethod=indent
   autocmd FileType scss setlocal foldlevel=1
 
-  autocmd FileType typescript setlocal sw=4 sts=4 ts=4 expandtab
+  autocmd FileType typescript setlocal sw=2 sts=2 ts=2 expandtab
   autocmd FileType typescript setlocal autoindent
   autocmd FileType typescript setlocal foldmethod=indent
   autocmd FileType typescript setlocal foldlevel=1
