@@ -1,121 +1,40 @@
-set nocompatible
-filetype off
+call plug#begin('~/.vim/plugged')
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Minimalist Vim Plugin Manager
+Plug 'junegunn/vim-plug'
 
-" Let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Color Schemes
+Plug 'kreeger/benlight'
+Plug 'morhetz/gruvbox'
+Plug 'ajh17/spacegray.vim'
+Plug 'junegunn/seoul256.vim'
+" Status/tabline that light as air
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Ruby specific
+Plug 'vim-ruby/vim-ruby'
+" Typescript specific
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Quramy/tsuquyomi'
+" HTML5 omnicomplete and syntax
+Plug 'othree/html5.vim'
+" Rails specific
+Plug 'tpope/vim-rails'
+" Command-line fuzzy finder in Vim
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+" Git wrapper
+Plug 'tpope/vim-fugitive'
+" Snippet solution
+Plug 'SirVer/ultisnips'
 
-Plugin 'L9'
+" Initialize plugin system
+call plug#end()
 
-" Fugitive plugin from github
-Plugin 'tpope/vim-fugitive'
-
-" NERDTree plugin from github
-Plugin 'scrooloose/nerdtree'
-
-" Nerdcommenter plugin from github
-Plugin 'scrooloose/nerdcommenter'
-
-" Ruby plugin from github
-Plugin 'vim-ruby/vim-ruby'
-
-" Rails plugin from github
-Plugin 'tpope/vim-rails'
-
-" jQuery plugin from github
-Plugin 'itspriddle/vim-jquery'
-
-" JavaScript plugin from github
-Plugin 'jelera/vim-javascript-syntax'
-
-" HAML plugin from github
-Plugin 'tpope/vim-haml'
-
-" Cucumber plugin from github
-Plugin 'tpope/vim-cucumber'
-
-" Tabular plugin from github
-Plugin 'godlygeek/tabular'
-
-" Vividchalk plugin from github
-Plugin 'tpope/vim-vividchalk'
-
-" Python plugin from github
-Plugin 'python.vim'
-
-" SCSS plugin from github
-Plugin 'cakebaker/scss-syntax.vim'
-
-" HTML plugin from github
-Plugin 'othree/html5.vim'
-
-" Coffeescript plugin from github
-Plugin 'kchmck/vim-coffee-script'
-
-" Modified statusline plugin from github
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-" Quickly search file
-Plugin 'kien/ctrlp.vim'
-
-" Change surroundings in pairs
-Plugin 'tpope/vim-surround'
-
-" Easy text exchange operator
-Plugin 'tommcdo/vim-exchange'
-
-" Angularjs plugin from github
-Plugin 'burnettk/vim-angular'
-
-" Find file faster
-Plugin 'vim-scripts/FuzzyFinder'
-
-Plugin 'wincent/command-t'
-Plugin 'mileszs/ack.vim'
-
-" Provides automatic closing of quotes, parenthesis, brackets, etc.
-Plugin 'Raimondi/delimitMate'
-
-Plugin 'kreeger/benlight'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'benmills/vimux'
-Plugin 'jgdavey/vim-turbux'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'leafgarland/typescript-vim'
-
-" Wisely add 'end' in ruby
-Plugin 'tpope/vim-endwise'
-" Lightweight support for Ruby's Bundler
-Plugin 'tpope/vim-bundler'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-syntax on
-
+" Disabling arrow keys
 no <down> <Nop>
 no <up> <Nop>
 no <left> <Nop>
@@ -126,81 +45,35 @@ ino <left> <Nop>
 ino <right> <Nop>
 
 " Set the color scheme used for syntax highlighting
+let g:seoul256_background = 233
+colorscheme gruvbox
+
 set background=dark
-set t_Co=256
-colorscheme benlight
-
-" Showing line number all the time
+" Showing line numbers all the time
 set number
-" Showing list characters all the time
-set list
-
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
-set laststatus=2
-
-" Enable search highlighing
-set hlsearch
-set hidden
-
+" Showing list characters all the times
+set list
+set expandtab
+set tabstop=2 shiftwidth=2 softtabstop=2
+set autoindent
 set backspace=indent,eol,start
+set foldmethod=indent
+set foldlevel=1
 
 " Shortcut to rapidly toggle 'set list'
-nmap <leader>l :set list!<CR>
-
-" Invisible character colors
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
-
+map <leader>l :set list!<CR>
+" Shortcut to radidly toggle 'NERDTree'
 map <leader>n :NERDTreeToggle<CR>
 
-let g:airline#extensions#tabline#enabled=0
+" Airline configuration
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_sep=' '
-let g:airline#extensions#tabline#left_alt_sep='|'
+let g:airline#extensions#tabline#formatter='unique_tail'
 
-" Only do this part when compiled with support for autocommands
-if has("autocmd")
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-  au BufRead,BufNewFile *.feature set filetype=gherkin
-  au! Syntax gherkin source ~/.vim/bundle/vim-cucumber/syntax/cucumber.vim
-
-  autocmd FileType ruby compiler ruby
-  autocmd FileType ruby setlocal sw=2 sts=2 ts=2 expandtab
-  autocmd FileType ruby setlocal autoindent
-  autocmd FileType ruby let ruby_fold=1
-  autocmd FileType ruby setlocal foldlevel=1
-
-  autocmd FileType eruby compiler ruby
-  autocmd FileType eruby setlocal sw=2 sts=2 ts=2 expandtab
-  autocmd FileType eruby setlocal autoindent
-
-  autocmd FileType javascript setlocal sw=4 sts=4 ts=4 expandtab
-  autocmd FileType javascript setlocal autoindent
-  autocmd FileType javascript call JavaScriptFold()
-  autocmd FileType javascript setlocal foldlevel=1
-
-  autocmd FileType json setlocal sw=4 sts=4 ts=4 expandtab
-  autocmd FileType json setlocal autoindent
-
-  autocmd FileType html setlocal sw=4 sts=4 ts=4 expandtab
-  autocmd FileType html setlocal autoindent
-  autocmd FileType html setlocal foldmethod=indent
-  autocmd FileType html setlocal foldlevel=1
-
-  autocmd FileType python setlocal sw=4 sts=4 ts=4 expandtab
-  autocmd FileType python setlocal autoindent
-
-  autocmd FileType scss setlocal sw=2 sts=2 ts=2 expandtab
-  autocmd FileType scss setlocal autoindent
-  autocmd FileType scss setlocal foldmethod=indent
-  autocmd FileType scss setlocal foldlevel=1
-
-  autocmd FileType typescript setlocal sw=2 sts=2 ts=2 expandtab
-  autocmd FileType typescript setlocal autoindent
-  autocmd FileType typescript setlocal foldmethod=indent
-  autocmd FileType typescript setlocal foldlevel=1
-endif
-
+" Ruby specific
+autocmd Filetype ruby compiler ruby
+" HTML specific
+autocmd FileType html setlocal sw=4 sts=4 ts=4 expandtab
