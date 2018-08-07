@@ -30,6 +30,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 " Snippet solution
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Initialize plugin system
 call plug#end()
@@ -61,6 +62,7 @@ set autoindent
 set backspace=indent,eol,start
 set foldmethod=indent
 set foldlevel=1
+set hlsearch
 
 " Shortcut to rapidly toggle 'set list'
 map <leader>l :set list!<CR>
@@ -72,6 +74,14 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_sep=' '
 let g:airline#extensions#tabline#formatter='unique_tail'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="horizontal"
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 
 " Ruby specific
 autocmd Filetype ruby compiler ruby
