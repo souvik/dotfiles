@@ -31,6 +31,8 @@ Plug 'tpope/vim-fugitive'
 " Snippet solution
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+" Silver Searcher compatiable vim plugin
+Plug 'mileszs/ack.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -82,6 +84,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+
+" FZF specific mappings
+nnoremap <C-b> :Buffers<CR>
+nnoremap <C-g>g :Ag<CR>
+nnoremap <leader>l :BLines<CR>
+nnoremap <leader>L :Lines<CR>
 
 " Ruby specific
 autocmd Filetype ruby compiler ruby
