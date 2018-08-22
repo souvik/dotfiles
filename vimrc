@@ -86,10 +86,14 @@ let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 
 " FZF specific mappings
-nnoremap <C-b> :Buffers<CR>
-nnoremap <C-g>g :Ag<CR>
+nnoremap <leader>t :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>g :Ag<CR>
 nnoremap <leader>l :BLines<CR>
 nnoremap <leader>L :Lines<CR>
+
+" ack.vim with Ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Ruby specific
 autocmd Filetype ruby compiler ruby
