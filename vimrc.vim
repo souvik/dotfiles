@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Ruby specific
 Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rvm'
 " Typescript specific
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -33,6 +34,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Silver Searcher compatiable vim plugin
 Plug 'mileszs/ack.vim'
+" JavaScript specific
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 " Initialize plugin system
 call plug#end()
@@ -81,9 +85,16 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+
+" Enables syntax highlighting for JSDocs
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+" Enables syntax highlighting for Flow
+let g:javascript_plugin_flow = 1
 
 " FZF specific mappings
 nnoremap <leader>t :Files<CR>
@@ -99,3 +110,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 autocmd Filetype ruby compiler ruby
 " HTML specific
 autocmd FileType html setlocal sw=4 sts=4 ts=4 expandtab
+" Enables code folding for JavaScript
+augroup javascript_folding
+  au!
+  au FileType javascript setlocal foldmethod=syntax
+augroup END
