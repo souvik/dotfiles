@@ -37,6 +37,8 @@ Plug 'mileszs/ack.vim'
 " JavaScript specific
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+" Vim plugin, insert or delete brackets, parens, quotes in pair
+Plug 'jiangmiao/auto-pairs'
 
 " Initialize plugin system
 call plug#end()
