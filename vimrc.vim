@@ -39,6 +39,12 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 " Vim plugin, insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
+" Check syntax in Vim asynchronously and fix files
+Plug 'dense-analysis/ale'
+" Dark powered asynchronous completion framework
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 " Initialize plugin system
 call plug#end()
@@ -97,6 +103,9 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 " Enables syntax highlighting for Flow
 let g:javascript_plugin_flow = 1
+
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
 
 " FZF specific mappings
 nnoremap <leader>t :Files<CR>
