@@ -45,6 +45,8 @@ Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+" Seamless navigation between tmux panes and vim splits
+Plug 'christoomey/vim-tmux-navigator'
 
 " Initialize plugin system
 call plug#end()
@@ -104,8 +106,13 @@ let g:javascript_plugin_ngdoc = 1
 " Enables syntax highlighting for Flow
 let g:javascript_plugin_flow = 1
 
+" Enable fly mode of auto-pairs
+let g:AutoPairsFlyMode = 1
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
+" ack.vim with Ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
 
 " FZF specific mappings
 nnoremap <leader>t :Files<CR>
@@ -113,9 +120,6 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>g :Ag<CR>
 nnoremap <leader>l :BLines<CR>
 nnoremap <leader>L :Lines<CR>
-
-" ack.vim with Ag
-let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Ruby specific
 autocmd Filetype ruby compiler ruby
