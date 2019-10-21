@@ -24,6 +24,7 @@ Plug 'Quramy/tsuquyomi'
 Plug 'othree/html5.vim'
 " Rails specific
 Plug 'tpope/vim-rails'
+Plug 'thoughtbot/vim-rspec'
 " Command-line fuzzy finder in Vim
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -47,6 +48,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
+" Asynchronous build and test dispatcher
+Plug 'tpope/vim-dispatch'
 
 " Initialize plugin system
 call plug#end()
@@ -121,8 +124,18 @@ nnoremap <leader>g :Ag<CR>
 nnoremap <leader>l :BLines<CR>
 nnoremap <leader>L :Lines<CR>
 
+" RSpec.vim mappings
+map <Leader>s :call RunCurrentSpecFile()<CR>
+map <Leader>S :call RunNearestSpec()<CR>
+map <Leader>ls :call RunLastSpec()<CR>
+map <Leader>as :call RunAllSpecs()<CR>
+" Overriding rspec command variable to use Dispatch
+let g:rspec_runner = "os_x_iterm2"
+let g:rspec_command = "Dispatch bin/rspec {spec}"
+
 " Ruby specific
 autocmd Filetype ruby compiler ruby
+autocmd BufEnter * Rvm
 " HTML specific
 autocmd FileType html setlocal sw=4 sts=4 ts=4 expandtab
 " Enables code folding for JavaScript
