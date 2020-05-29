@@ -25,6 +25,7 @@ Plug 'othree/html5.vim'
 " Rails specific
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-bundler'
 " Command-line fuzzy finder in Vim
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -50,6 +51,12 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'christoomey/vim-tmux-navigator'
 " Asynchronous build and test dispatcher
 Plug 'tpope/vim-dispatch'
+" Go development plugin for Vim
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Display ctags in a window
+Plug 'majutsushi/tagbar'
+" Java completion
+Plug 'artur-shaik/vim-javacomplete2'
 
 " Initialize plugin system
 call plug#end()
@@ -93,12 +100,12 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_sep=' '
 let g:airline#extensions#tabline#formatter='unique_tail'
+let g:airline#extensions#ale#enabled = 1
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
@@ -113,9 +120,27 @@ let g:javascript_plugin_flow = 1
 let g:AutoPairsFlyMode = 1
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
+" ALE Linter settings
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'java': ['javac']
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\}
 " ack.vim with Ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+call g:deoplete#custom#option({
+      \  'source': {
+      \    '_': ['ale', 'buffer'],
+      \    'java': ['jc', 'javacomplete2', 'file', 'buffer', 'ultisnips']
+      \  }
+      \})
 
 " FZF specific mappings
 nnoremap <leader>t :Files<CR>
@@ -124,20 +149,37 @@ nnoremap <leader>g :Ag<CR>
 nnoremap <leader>l :BLines<CR>
 nnoremap <leader>L :Lines<CR>
 
+" Tagbar settings
+nmap <leader>y :TagbarToggle<CR>
+
 " RSpec.vim mappings
 map <Leader>s :call RunCurrentSpecFile()<CR>
 map <Leader>S :call RunNearestSpec()<CR>
 map <Leader>ls :call RunLastSpec()<CR>
 map <Leader>as :call RunAllSpecs()<CR>
+
+""use TAB as the mapping
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ?  "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "" {{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction "" }}}
+
 " Overriding rspec command variable to use Dispatch
 let g:rspec_runner = "os_x_iterm2"
 let g:rspec_command = "Dispatch bin/rspec {spec}"
 
 " Ruby specific
 autocmd Filetype ruby compiler ruby
-autocmd BufEnter * Rvm
+" autocmd BufEnter * Rvm
 " HTML specific
 autocmd FileType html setlocal sw=4 sts=4 ts=4 expandtab
+" JAVA specific
+autocmd FileType java setlocal sw=4 sts=4 ts=4 omnifunc=javacomplete#Complete expandtab
+autocmd FileType java JCEnable
 " Enables code folding for JavaScript
 augroup javascript_folding
   au!
