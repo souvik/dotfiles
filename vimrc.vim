@@ -174,7 +174,6 @@ let g:rspec_command = "Dispatch bin/rspec {spec}"
 
 " Ruby specific
 autocmd Filetype ruby compiler ruby
-" autocmd BufEnter * Rvm
 " HTML specific
 autocmd FileType html setlocal sw=4 sts=4 ts=4 expandtab
 " JAVA specific
