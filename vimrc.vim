@@ -57,6 +57,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'majutsushi/tagbar'
 " Java completion
 Plug 'artur-shaik/vim-javacomplete2'
+" Scala support
+Plug 'derekwyatt/vim-scala'
 
 " Initialize plugin system
 call plug#end()
@@ -126,11 +128,12 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'java': ['javac']
+\   'java': ['javac'],
+\   'scala': ['scalac']
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
+\   'javascript': [ 'remove_trailing_lines', 'trim_whitespace', 'prettier', 'eslint']
 \}
 " ack.vim with Ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
