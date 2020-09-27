@@ -59,6 +59,8 @@ Plug 'majutsushi/tagbar'
 Plug 'artur-shaik/vim-javacomplete2'
 " Scala support
 Plug 'derekwyatt/vim-scala'
+Plug 'tpope/vim-surround'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Initialize plugin system
 call plug#end()
