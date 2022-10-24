@@ -61,6 +61,9 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'derekwyatt/vim-scala'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'turbio/bracey.vim'
+" Syntax files for Solidity
+Plug 'tomlion/vim-solidity'
 
 " Initialize plugin system
 call plug#end()
